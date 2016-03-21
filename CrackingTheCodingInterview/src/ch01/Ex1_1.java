@@ -1,25 +1,28 @@
 package ch01;
 
-import java.util.Enumeration;
-import java.util.Hashtable;
-import java.util.Iterator;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Ex1_1 {
 	public static void main(String[] args) {
-		// ì¼ë°˜ì ìœ¼ë¡œ ë™ê¸°í™”ê°€ í•„ìš” ì—†ë‹¤ë©´ HashMapì„, ë™ê¸°í™” ë³´ì¥ì´ í•„ìš”í•˜ë‹¤ë©´ Hashtableì„ ì‚¬ìš©í•˜ë©´ëœë‹¤.
-		Hashtable<Integer, String> map = new Hashtable<>();
+		/*ÇØ´ç ¹®ÀÚ¿­ÀÌ À¯ÀÏÇÑ ¹®ÀÚÀÎÁö ÆÇº°ÇÏ½Ã¿À*/
+		String str = "Hello, Wrd";
+		List<String> list = new ArrayList<>(Arrays.asList(str.split("")));
 		
-		map.put(1, "aaa");
-		map.put(2, "ccc");
-		map.put(3, "bbb");
-		
-		System.out.println(map.get(1));
-		System.out.println(map.size());
-		
-		Enumeration key = map.keys();
-		
-		while(key.hasMoreElements()){
-			System.out.println(map.get(key.nextElement()));
+		try {
+			// List to Map
+			// list¸¦ map¿¡ ÀúÀå ÇÒ ½Ã¿¡ listÀÇ value¸¦ Å°·Î ÀúÀå ÇÏ¹Ç·Î ¹®ÀÚ¿­ÀÌ Áßº¹µÇ¾î ÀÖ´Ù¸é Å° Áßº¹À¸·ÎÀÎÇØ ¿¡·¯ ¹ß»ı 
+			Map<String, String> map = list.stream()
+					.collect(Collectors.toMap(String::toString, listStrings -> listStrings));
+			
+			// ¿¡·¯ ¹ß»ı ÇÏÁö ¾Ê´Â´Ù¸é map Ãâ·Â
+			map.forEach((k,v) -> System.out.println("key:"+ k + ", value:" + v));
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
 		}
 	}
 }
