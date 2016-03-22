@@ -33,7 +33,7 @@ public class Ex1_5{
 				temp += Character.toString(str.charAt(i-1)) + count;
 				break;
 			}
-			// 첫번째 문자
+			
 			if(str.charAt(i) == str.charAt(i+1)){ // 두 문자열이 같다면 count++
 				count++;
 			}else{
